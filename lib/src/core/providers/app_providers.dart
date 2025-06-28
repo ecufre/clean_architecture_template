@@ -3,4 +3,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'app_providers.g.dart';
 
 @Riverpod(keepAlive: true)
+ApiClient apiClient(ApiClientRef ref) {
+  return ApiClient(baseUrl: '', interceptors: []);
+}
+
+@Riverpod(keepAlive: true)
 NavigationBloc navigationBloc(NavigationBlocRef ref) => NavigationBloc();
