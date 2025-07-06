@@ -1,5 +1,5 @@
 import 'package:clean_architecture_template/src/core/lib_core.dart';
-import 'package:clean_architecture_template/src/features/home/presentation/home_screen.dart';
+import 'package:clean_architecture_template/src/features/home/presentation/screens/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {

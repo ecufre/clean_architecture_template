@@ -1,29 +1,29 @@
 import 'dart:async';
-
 import 'package:clean_architecture_template/src/core/mixins/app_localizations_mixin.dart';
-import 'package:clean_architecture_template/src/features/episodes/business/bloc/episodes_bloc.dart';
-import 'package:clean_architecture_template/src/features/episodes/business/providers/episodes_providers.dart';
+import 'package:clean_architecture_template/src/features/locations/business/bloc/locations_bloc.dart';
+import 'package:clean_architecture_template/src/features/locations/business/providers/locations_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class EpisodesScreen extends ConsumerStatefulWidget {
-  const EpisodesScreen({super.key});
+class LocationsScreen extends ConsumerStatefulWidget {
+  const LocationsScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _EpisodesScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _LocationsScreenState();
 }
 
-class _EpisodesScreenState extends ConsumerState<EpisodesScreen>
+class _LocationsScreenState extends ConsumerState<LocationsScreen>
     with AppLocalizationsMixin {
-  late final EpisodesBloc _episodesBloc;
+  late final LocationsBloc _locationsBloc;
   final List<StreamSubscription> _subscriptions = [];
 
   @override
   void initState() {
     super.initState();
-    _episodesBloc = ref.read(episodesBlocProvider);
+    _locationsBloc = ref.read(locationsBlocProvider);
     _subscriptions.add(
-      _episodesBloc.episodesReadyStream.listen((_) {
+      _locationsBloc.locationsReadyStream.listen((_) {
         if (mounted) {
           setState(() {});
         }
@@ -40,18 +40,18 @@ class _EpisodesScreenState extends ConsumerState<EpisodesScreen>
   }
 
   Widget _buildBody() {
-    return _episodesBloc.episodesReady &&
-            _episodesBloc.episodes?.isNotEmpty == true
+    return _locationsBloc.locationsReady &&
+            _locationsBloc.locations?.isNotEmpty == true
         ? ListView.separated(
             itemBuilder: (context, index) {
-              final character = _episodesBloc.episodes?[index];
+              final character = _locationsBloc.locations?[index];
               return ListTile(
                 title: Text(character?.name ?? ''),
-                subtitle: Text(character?.episode ?? ''),
+                subtitle: Text(character?.type ?? ''),
               );
             },
             separatorBuilder: (_, __) => const Divider(),
-            itemCount: _episodesBloc.episodes?.length ?? 0,
+            itemCount: _locationsBloc.locations?.length ?? 0,
           )
         : const Center(child: CircularProgressIndicator());
   }
@@ -59,7 +59,7 @@ class _EpisodesScreenState extends ConsumerState<EpisodesScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Episodes')),
+      appBar: AppBar(title: const Text('Locations')),
       body: _buildBody(),
     );
   }

@@ -1,46 +1,46 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'episodes_providers.dart';
+part of 'locations_providers.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$episodesRepositoryHash() =>
-    r'ef26f9096d49475368f16116333b4f664b7f5ce7';
+String _$locationsRepositoryHash() =>
+    r'70f9e58774d2e85fc370bee4115c94c45c5d6688';
 
-/// See also [episodesRepository].
-@ProviderFor(episodesRepository)
-final episodesRepositoryProvider =
-    AutoDisposeProvider<EpisodesRepository>.internal(
-      episodesRepository,
-      name: r'episodesRepositoryProvider',
+/// See also [locationsRepository].
+@ProviderFor(locationsRepository)
+final locationsRepositoryProvider =
+    AutoDisposeProvider<LocationsRepository>.internal(
+      locationsRepository,
+      name: r'locationsRepositoryProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$episodesRepositoryHash,
+          : _$locationsRepositoryHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef EpisodesRepositoryRef = AutoDisposeProviderRef<EpisodesRepository>;
-String _$episodesBlocHash() => r'14a1345ed5cd09f2cf47ef708d03fa7aa5bc8ccf';
+typedef LocationsRepositoryRef = AutoDisposeProviderRef<LocationsRepository>;
+String _$locationsBlocHash() => r'124a832a97a241bcaf95e0d22b96102026b89b42';
 
-/// See also [episodesBloc].
-@ProviderFor(episodesBloc)
-final episodesBlocProvider = AutoDisposeProvider<EpisodesBloc>.internal(
-  episodesBloc,
-  name: r'episodesBlocProvider',
+/// See also [locationsBloc].
+@ProviderFor(locationsBloc)
+final locationsBlocProvider = AutoDisposeProvider<LocationsBloc>.internal(
+  locationsBloc,
+  name: r'locationsBlocProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$episodesBlocHash,
+      : _$locationsBlocHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef EpisodesBlocRef = AutoDisposeProviderRef<EpisodesBloc>;
+typedef LocationsBlocRef = AutoDisposeProviderRef<LocationsBloc>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

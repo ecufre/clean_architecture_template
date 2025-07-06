@@ -2,6 +2,7 @@ import 'package:clean_architecture_template/generated/l10n.dart';
 import 'package:clean_architecture_template/src/features/characters/presentation/screens/characters_screen.dart';
 import 'package:clean_architecture_template/src/features/episodes/presentation/screens/episodes_screen.dart';
 import 'package:clean_architecture_template/src/features/home/providers/home_providers.dart';
+import 'package:clean_architecture_template/src/features/locations/presentation/screens/locations_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,7 +18,7 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       body: switch (currentIndex) {
         1 => const EpisodesScreen(),
-        2 => Container(color: Colors.red),
+        2 => const LocationsScreen(),
         _ => const CharactersScreen(),
       },
       bottomNavigationBar: DecoratedBox(
