@@ -1,3 +1,5 @@
 abstract class Endpoints {
-  static const email = '/email';
+  static const characters = '/character';
+  static const locations = '/location';
+  static const episodes = '/episode';
 }

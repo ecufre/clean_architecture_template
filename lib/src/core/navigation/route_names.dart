@@ -1,5 +1,7 @@
-class RouteNames {}
+class RouteNames {
+  static const dashboard = 'dashboard';
+}
 
-class RouthPath {
+class RoutePaths {
   static const root = '/';
 }
