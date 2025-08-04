@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:clean_architecture_template/src/core/base_bloc.dart';
-import 'package:clean_architecture_template/src/features/episodes/data/models/episode.dart';
+import 'package:clean_architecture_template/src/features/episodes/domain/interceptor/episodes_interceptor.dart';
+import 'package:clean_architecture_template/src/features/episodes/domain/models/episode_model.dart';
 import 'package:clean_architecture_template/src/features/episodes/domain/repositories/episodes_repository.dart';
 import 'package:logging/logging.dart';
 
@@ -15,10 +16,10 @@ class EpisodesBloc extends BaseBloc {
 
   final _episodesReadyStreamController = StreamController<bool>.broadcast();
 
-  List<Episode>? _episodes;
+  List<EpisodeModel>? _episodes;
   bool _episodesReady = false;
 
-  List<Episode>? get episodes => _episodes;
+  List<EpisodeModel>? get episodes => _episodes;
   bool get episodesReady => _episodesReady;
   Stream<bool> get episodesReadyStream => _episodesReadyStreamController.stream;
 
@@ -34,7 +35,8 @@ class EpisodesBloc extends BaseBloc {
   Future<void> _fetchEpisodes() async {
     try {
       _episodesReady = true;
-      _episodes = await _repository.fetchEpisodes();
+      final response = await _repository.fetchEpisodes();
+      _episodes = EpisodesInterceptor.listEpisodesDtoToListModel(response);
       _emitEpisodesReady();
     } catch (error, stackTrace) {
       _logger.severe('Error on EpisodesBloc._fetchEpisodes', error, stackTrace);

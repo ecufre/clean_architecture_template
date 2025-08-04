@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:clean_architecture_template/src/core/base_bloc.dart';
-import 'package:clean_architecture_template/src/features/characters/data/models/character.dart';
+import 'package:clean_architecture_template/src/features/characters/domain/interceptor/characters_interceptor.dart';
+import 'package:clean_architecture_template/src/features/characters/domain/models/character_model.dart';
 import 'package:clean_architecture_template/src/features/characters/domain/repositories/characters_repository.dart';
 import 'package:logging/logging.dart';
 
@@ -15,10 +16,10 @@ class CharactersBloc extends BaseBloc {
 
   final _charactersReadyStreamController = StreamController<bool>.broadcast();
 
-  List<Character>? _characters;
+  List<CharacterModel>? _characters;
   bool _charactersReady = false;
 
-  List<Character>? get characters => _characters;
+  List<CharacterModel>? get characters => _characters;
   bool get charactersReady => _charactersReady;
   Stream<bool> get charactersReadyStream =>
       _charactersReadyStreamController.stream;
@@ -35,7 +36,10 @@ class CharactersBloc extends BaseBloc {
   Future<void> _fetchCharacters() async {
     try {
       _charactersReady = true;
-      _characters = await _repository.fetchCharacters();
+      final response = await _repository.fetchCharacters();
+      _characters = CharactersInterceptor.listCharactersDtoToListModel(
+        response,
+      );
       _emitCharactersReady();
     } catch (error, stackTrace) {
       _logger.severe(

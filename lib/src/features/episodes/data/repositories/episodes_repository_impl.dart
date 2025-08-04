@@ -1,6 +1,6 @@
 import 'package:clean_architecture_template/src/core/lib_core.dart';
-import 'package:clean_architecture_template/src/features/episodes/data/models/episode.dart';
-import 'package:clean_architecture_template/src/features/episodes/data/models/episodes_response.dart';
+import 'package:clean_architecture_template/src/features/episodes/data/dtos/episode_dto.dart';
+import 'package:clean_architecture_template/src/features/episodes/data/dtos/episodes_response_dto.dart';
 import 'package:clean_architecture_template/src/features/episodes/domain/repositories/episodes_repository.dart';
 
 class EpisodesRepositoryImpl implements EpisodesRepository {
@@ -9,13 +9,13 @@ class EpisodesRepositoryImpl implements EpisodesRepository {
 
   final ApiClient _apiClient;
   @override
-  Future<List<Episode>> fetchEpisodes() async {
+  Future<List<EpisodeDto>> fetchEpisodes() async {
     try {
       final response = await _apiClient.execute(
         method: ApiRequestMethod.get,
         path: Endpoints.episodes,
       );
-      final items = EpisodesResponse.fromJson(response.data).results;
+      final items = EpisodesResponseDto.fromJson(response.data).results;
       return items;
     } catch (e) {
       rethrow;

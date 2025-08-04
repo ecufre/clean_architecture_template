@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:clean_architecture_template/src/core/base_bloc.dart';
-import 'package:clean_architecture_template/src/features/locations/data/models/location.dart';
+import 'package:clean_architecture_template/src/features/locations/domain/interceptor/locations_interceptor.dart';
+import 'package:clean_architecture_template/src/features/locations/domain/models/location_model.dart';
 import 'package:clean_architecture_template/src/features/locations/domain/repositories/locations_repository.dart';
 import 'package:logging/logging.dart';
 
@@ -13,10 +14,10 @@ class LocationsBloc extends BaseBloc {
   final LocationsRepository _repository;
   final _locationsReadyStreamController = StreamController<bool>.broadcast();
 
-  List<Location>? _locations;
+  List<LocationModel>? _locations;
   bool _locationsReady = false;
 
-  List<Location>? get locations => _locations;
+  List<LocationModel>? get locations => _locations;
   bool get locationsReady => _locationsReady;
   Stream<bool> get locationsReadyStream =>
       _locationsReadyStreamController.stream;
@@ -33,7 +34,8 @@ class LocationsBloc extends BaseBloc {
   Future<void> _fetchLocations() async {
     try {
       _locationsReady = true;
-      _locations = await _repository.fetchLocations();
+      final response = await _repository.fetchLocations();
+      _locations = LocationsInterceptor.listEpisodesDtoToListModel(response);
       _emitLocationsReady();
     } catch (error, stackTrace) {
       _logger.severe(

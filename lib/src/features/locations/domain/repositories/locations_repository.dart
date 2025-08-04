@@ -1,5 +1,5 @@
-import 'package:clean_architecture_template/src/features/locations/data/models/location.dart';
+import 'package:clean_architecture_template/src/features/locations/data/dtos/location_dto.dart';
 
 abstract class LocationsRepository {
-  Future<List<Location>> fetchLocations();
+  Future<List<LocationDto>> fetchLocations();
 }

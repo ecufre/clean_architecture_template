@@ -1,6 +1,6 @@
 import 'package:clean_architecture_template/src/core/lib_core.dart';
-import 'package:clean_architecture_template/src/features/locations/data/models/location.dart';
-import 'package:clean_architecture_template/src/features/locations/data/models/locations_response.dart';
+import 'package:clean_architecture_template/src/features/locations/data/dtos/location_dto.dart';
+import 'package:clean_architecture_template/src/features/locations/data/dtos/locations_response_dto.dart';
 import 'package:clean_architecture_template/src/features/locations/domain/repositories/locations_repository.dart';
 
 class LocationsRepositoryImpl implements LocationsRepository {
@@ -9,13 +9,13 @@ class LocationsRepositoryImpl implements LocationsRepository {
 
   final ApiClient _apiClient;
   @override
-  Future<List<Location>> fetchLocations() async {
+  Future<List<LocationDto>> fetchLocations() async {
     try {
       final response = await _apiClient.execute(
         method: ApiRequestMethod.get,
         path: Endpoints.locations,
       );
-      final items = LocationsResponse.fromJson(response.data).results;
+      final items = LocationsResponseDto.fromJson(response.data).results;
       return items;
     } catch (e) {
       rethrow;

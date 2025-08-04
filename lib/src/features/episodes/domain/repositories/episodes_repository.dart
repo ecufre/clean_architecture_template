@@ -1,5 +1,5 @@
-import 'package:clean_architecture_template/src/features/episodes/data/models/episode.dart';
+import 'package:clean_architecture_template/src/features/episodes/data/dtos/episode_dto.dart';
 
 abstract class EpisodesRepository {
-  Future<List<Episode>> fetchEpisodes();
+  Future<List<EpisodeDto>> fetchEpisodes();
 }

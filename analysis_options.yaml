@@ -9,10 +9,12 @@ linter:
     - always_use_package_imports
     - avoid_print
     - directives_ordering
-    - lines_longer_than_80_chars,
     - prefer_const_constructors
     - prefer_single_quotes
     - require_trailing_commas
     - sort_constructors_first
     - sort_pub_dependencies
     - use_key_in_widget_constructors
+
+formatter:
+  trailing_commas: preserve
